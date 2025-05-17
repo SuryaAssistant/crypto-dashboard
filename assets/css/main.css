@@ -1,3 +1,35 @@
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  padding-left: -20px;
+}
+
+::-webkit-scrollbar-button{
+    background: transparent;
+    color: transparent;
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
+    color: transparent;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
 body{
     background-color: #010409;
     font-family: Roboto, Arial, Helvetica;
@@ -36,4 +68,85 @@ section {
     line-height: 16px;
     padding: 0px;
     margin: 20px 0px 0px 0px;
+}
+
+.modal{
+    background-color: #010409;
+}
+
+.modal-content{
+    background-color: #010409;
+}
+
+.modal .btn-close {
+  position: absolute;
+  top: 1rem;     /* adjust as needed */
+  right: 1rem;   /* adjust as needed */
+  z-index: 1051; /* higher than modal backdrop (1050) */
+}
+
+
+
+.news-title{
+    color: #dbdbdb;
+}
+
+.wp-smiley {
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  display: inline-block;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+blockquote {
+  border-left: 4px solid #f7931a;  /* Bitcoin orange or any color */
+  padding: 10px 15px;
+  margin: 15px 0;
+  background-color: #1e1e1e;      /* Dark theme background */
+  color: #ccc;
+  font-style: italic;
+  font-size: 0.95em;
+}
+
+
+#news-content {
+    font-size: 18px;
+}
+
+#news-content a {
+  color: #f7931a;            /* Example: Bitcoin orange */
+  text-decoration: none;     /* Remove underline */
+  font-weight: bold;
+}
+
+#news-content a:hover {
+  text-decoration: underline;
+}
+
+#news-content h2 {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+#news-content h3 {
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+#news-content p {
+    font-size: 18px;
+}
+
+#news-content img:not(.wp-smiley){
+    object-fit: contain;
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 24px;
+}
+
+#news-content figcaption {
+    font-style: italic;
+    font-size: 0.95em;
 }
