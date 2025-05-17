@@ -52,7 +52,7 @@ async function fetchFeed(url) {
 (async () => {
     const bitcoinFeed = await fetchFeed("https://news.bitcoin.com/feed/");
     const newsbtcFeed = await fetchFeed("https://www.newsbtc.com/feed/");
-    const cointelegraphFeed = await fetchFeed("https://cointelegraph.com/feed");
+    const cointelegraphFeed = await fetchFeed("https://cointelegraph.com/rss");
     const cryptoPotatoFeed = await fetchFeed("https://cryptopotato.com/feed/");
     const todayqNewsFeed = await fetchFeed("https://news.todayq.com/feed/");
     const cryptonewsFeed = await fetchFeed("https://cryptonews.com/feed/");
