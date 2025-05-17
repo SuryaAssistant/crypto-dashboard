@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Crypto Dashboard</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/main.css">
+
+    <!-- JS -->
+    <script src="https://widgets.coingecko.com/gecko-coin-price-chart-widget.js"></script>
+    <script src="https://widgets.coingecko.com/gecko-coin-price-marquee-widget.js"></script>
+    <script src="https://widgets.coingecko.com/gecko-coin-heatmap-widget.js"></script>
+
+</head>
+<body>
+    <!-- Crypto Marque -->
+    <div class="row" style="margin:0px; padding: 0px;">
+        <div class="col" style="padding: 0px;">
+            <gecko-coin-price-marquee-widget 
+            locale="en" 
+            outlined="true" 
+            dark-mode="true" 
+            coin-ids="bitcoin,ethereum,tether,binancecoin,pax-gold" 
+            initial-currency="usd">
+            </gecko-coin-price-marquee-widget>
+        </div>
+    </div>
+    <div class="container" style="padding-top: 20px;">
+        <!-- Crypto Block -->
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <!-- TradingView Widget BEGIN -->
+                        <div class="tradingview-widget-container">
+                        <div class="tradingview-widget-container__widget"></div>
+                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-tickers.js" async>
+                        {
+                        "symbols": [
+                            {
+                            "proName": "BITSTAMP:BTCUSD",
+                            "title": "Bitcoin"
+                            },
+                            {
+                            "description": "Bitcoin Dominance",
+                            "proName": "CRYPTOCAP:BTC.D"
+                            },
+                            {
+                            "description": "USD to IDR",
+                            "proName": "FX_IDC:USDIDR"
+                            },
+                            {
+                            "description": "Gold",
+                            "proName": "OANDA:XAUUSD"
+                            }
+                        ],
+                        "isTransparent": true,
+                        "showSymbolLogo": true,
+                        "colorTheme": "dark",
+                        "locale": "en"
+                        }
+                        </script>
+                        </div>
+                        <!-- TradingView Widget END -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fear and Greed -->
+        <div class="row">
+            <div class="col-lg-4" style="margin-bottom: 20px;">
+                <div class="card">
+                    <div class="card-body" style="padding: 0px;">
+                        <div id="fng-widget-container"></div>
+                    </div>
+                </div>
+            </div>
+            <!--
+            <div class="col-lg-4" style="margin-bottom: 20px;">
+                <div class="card" style="height: 350px;">
+                    <div class="card-body">
+                        <img src="https://alternative.me/crypto/fear-and-greed-index.png" style="object-fit: contain; height:100%; width: 100%; max-height: 300px;" />
+                    </div>
+                </div>
+            </div>
+            -->
+            <div class="col-lg-8" style="margin-bottom: 20px;">
+                <div class="card" style="height: 360px;">
+                    <div class="card-body">
+                        <div class="card-title">Bitcoin Fear & Greed</div>
+                        <div class="row" style="margin-bottom:20px">
+                            <div class="col">
+                                <button type="button" class="btn btn-secondary btn-custom" onclick="fetchAndPlotFNG(7)">7D</button>
+                                <button type="button" class="btn btn-secondary btn-custom" onclick="fetchAndPlotFNG(30)">1M</button>
+                                <button type="button" class="btn btn-secondary btn-custom" onclick="fetchAndPlotFNG(90)">3M</button>
+                                <button type="button" class="btn btn-secondary btn-custom" onclick="fetchAndPlotFNG(180)">6M</button>
+                                <button type="button" class="btn btn-secondary btn-custom" onclick="fetchAndPlotFNG(365)">1Y</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div style="width: 100%; max-width: 800px;">
+                                    <canvas id="fngChart" style="height: 200px;"></canvas>
+                                </div>
+                                <div class="row" style="text-align: right;">
+                                    <div class="col">
+                                    <p class="card-credit-text">Powered By Alternative.me</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row" style="text-align: center; margin-bottom: 20px;">
+            <div class="col-lg-8">
+                <!-- Bitcoin Price -->
+                <div class="row" style="margin-bottom: 20px;">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-title" style="text-align: left;">Bitcoin Price</div>
+                                <div class="row" style="height: 400px;">
+                                    <div class="col">
+                                <!-- TradingView Widget BEGIN -->
+                                <div class="tradingview-widget-container">
+                                <div class="tradingview-widget-container__widget"></div>
+                                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js" async>
+                                {
+                                "symbols": [
+                                    [
+                                    "BITSTAMP:BTCUSD|1M"
+                                    ]
+                                ],
+                                "chartOnly": false,
+                                "width": "100%",
+                                "height": "100%",
+                                "locale": "en",
+                                "colorTheme": "dark",
+                                "autosize": true,
+                                "showVolume": false,
+                                "showMA": false,
+                                "hideDateRanges": false,
+                                "hideMarketStatus": false,
+                                "hideSymbolLogo": false,
+                                "scalePosition": "right",
+                                "scaleMode": "Normal",
+                                "fontFamily": "-apple-system, BlinkMacSystemFont, Trebuchet MS, Roboto, Ubuntu, sans-serif",
+                                "fontSize": "10",
+                                "noTimeScale": false,
+                                "valuesTracking": "1",
+                                "changeMode": "price-and-percent",
+                                "chartType": "area",
+                                "maLineColor": "#2962FF",
+                                "maLineWidth": 1,
+                                "maLength": 9,
+                                "headerFontSize": "medium",
+                                "lineWidth": 2,
+                                "lineType": 0,
+                                "dateRanges": [
+                                    "1d|1",
+                                    "1m|30",
+                                    "3m|60",
+                                    "12m|1D",
+                                    "60m|1W",
+                                    "all|1M"
+                                ]
+                                }
+                                </script>
+                                </div>
+                                </div>
+                                <!-- TradingView Widget END -->
+                                </div>
+
+
+                                <!--
+                                <gecko-coin-price-chart-widget 
+                                locale="en" 
+                                dark-mode="true" 
+                                transparent-background="true" 
+                                coin-id="bitcoin" 
+                                initial-currency="usd">
+                                </gecko-coin-price-chart-widget>
+                                -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Crypto Heatmap -->
+                <div class="row" style="margin-bottom: 20px;">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-title" style="text-align: left;">Crypto Heatmap</div>
+
+                                <gecko-coin-heatmap-widget 
+                                locale="en" 
+                                dark-mode="true" 
+                                transparent-background="true" 
+                                top="100">
+                                </gecko-coin-heatmap-widget>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+                <div class= "card" style="height: 100%; min-height: 500px;">
+                    <div class="card-body">
+                        <div class="card-title" style="text-align: left; margin-bottom:20px">Bitcoin News</div>
+
+                        <div id="news-feed"></div>
+
+
+                    <!-- TradingView Widget BEGIN -->
+                    <!--
+                        <div class="tradingview-widget-container">
+                        <div class="tradingview-widget-container__widget"></div>
+                        <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
+                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
+                        {
+                        "feedMode": "market",
+                        "isTransparent": true,
+                        "displayMode": "regular",
+                        "width": "100%",
+                        "height": "100%",
+                        "colorTheme": "dark",
+                        "locale": "en",
+                        "market": "crypto"
+                        }
+                        </script>
+                        </div>
+                        -->
+                    <!-- TradingView Widget END -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+    <!-- Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <!-- Chart JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.4.0"></script>
+
+    <script src="./assets/js/coinstat-fng.js"></script>
+
+
+    <script>
+        async function fetchAndPlotFNG(day_length = 7) {
+            try {
+                const response = await fetch(`https://api.alternative.me/fng/?limit=${day_length}`);
+                const data = await response.json();
+                console.log(data)
+
+                const values = data.data.map(entry => parseInt(entry.value));
+                const labels = data.data.map(entry =>
+                    new Date(parseInt(entry.timestamp) * 1000).toLocaleDateString("en-US", { month: "short", day: "numeric" })
+                );
+
+
+
+                plotChart(labels.reverse(), values.reverse());
+
+            } catch (error) {
+                console.error("Error fetching Fear & Greed Index:", error);
+            }
+        }
+
+        let chartInstance = null;
+
+        function plotChart(labels, values) {
+            if (chartInstance) {
+                chartInstance.destroy();
+            }
+            
+            const ctx = document.getElementById("fngChart").getContext("2d");
+
+            chartInstance = new Chart(ctx, {
+                type: "line",
+                data: {
+                    labels: labels,
+                    datasets: [{
+                    label: "Fear & Greed Index",
+                    data: values,
+                    borderColor: "#BCFF2F",
+                    backgroundColor: "rgba(188, 255, 47, 0.1)",
+                    pointRadius: 0,         // 🔹 hides data point circles
+                    pointHoverRadius: 0,     // 🔹 hides hover effect on points
+                    fill: true,
+                    tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: {
+                            ticks: {
+                            maxTicksLimit: 7,
+                            autoSkip: true,
+                            color: '#fff'
+                            },
+                            title: {
+                                display: false,
+                                text: 'Date',
+                                color: '#fff'
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: 'Fear & Greed Index',
+                                color: '#fff'
+                            },
+                            ticks: {
+                                color: '#fff'
+                            }
+                        },
+                    },
+                    maintainAspectRatio : false,
+                    plugins: {
+                        legend: {
+                            display: false,
+                        },
+                        annotation: {
+                            annotations: {
+                            line80: {
+                                type: 'line',
+                                yMin: 80,
+                                yMax: 80,
+                                borderColor: 'rgba(255,255,255,0.5)',
+                                borderWidth: 1,
+                                label: {
+                                content: 'Extreme Greed',
+                                enabled: true,
+                                position: 'start',
+                                yAdjust: -10,
+                                backgroundColor: 'rgba(0,0,0,0.5)',
+                                color: 'rgba(255,255,255,0.7)'
+                                }
+                            },
+                            line20: {
+                                type: 'line',
+                                yMin: 20,
+                                yMax: 20,
+                                borderColor: 'rgba(255,255,255,0.5)',
+                                borderWidth: 1,
+                                label: {
+                                content: 'Extreme Fear',
+                                enabled: true,
+                                position: 'start',
+                                yAdjust: -10,
+                                backgroundColor: 'rgba(0,0,0,0.5)',
+                                color: 'rgba(255,255,255,0.7)'
+                                }
+                            }
+                            }
+                        }
+                    },
+                    interaction: {
+                        intersect: false,
+                        mode: 'index',
+                    },
+                                        
+                }
+            });
+        }
+
+
+
+        // Call the async function
+        fetchAndPlotFNG(7);
+    </script>
+    <script>
+    function extractImageFromContent(htmlContent) {
+    // Create a temporary DOM element to parse the HTML
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = htmlContent;
+
+    // Find the first <img> tag inside
+    const img = tempDiv.querySelector('img');
+    if (img && img.src) {
+        return img.src;
+    }
+
+    // Return null if no image found
+    return null;
+    }
+
+    fetch('https://api.rss2json.com/v1/api.json?rss_url=https://news.bitcoin.com/feed/')
+    .then(res => res.json())
+    .then(data => {
+        const container = document.getElementById('news-feed');
+        data.items.slice(0, 15).forEach(item => {
+        const article = document.createElement('div');
+
+        let timeStr = item.pubDate; // from API, no Z
+        if (!timeStr.endsWith("Z")) {
+        timeStr += "Z"; // force UTC
+        }
+
+        const localDate = new Date(timeStr);
+
+        const formatted = localDate.toLocaleString('en-US', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: true
+        });
+
+        const imageUrl = extractImageFromContent(item.content) || 'https://via.placeholder.com/80x60?text=No+Image';
+
+
+        article.style = "font-size:12px; text-align: left; margin-bottom: 20px";
+        article.innerHTML = `
+            <div class="row">
+                <div class="col-3">
+                    <img src="${imageUrl}" alt="thumbnail" style="width: 80px; height: 60px; object-fit: cover; margin-right: 10px; border-radius: 5px;">
+                </div>
+                <div class="col-9">
+                    <h5 style="margin: 0 0 5px 0; font-size:14px"><a href="${item.link}" target="_blank" style="color: #ffffff; text-decoration: none;">${item.title}</a></h5>
+                    <p style="color: #ccc; font-size: 13px; margin: 0;">${formatted}</p>
+                </div>
+            </div>
+            <hr style="border: none; height: 2px; background-color: #f7931a; margin: 20px 0;">
+
+        `;
+        container.appendChild(article);
+        });
+    });
+    </script>
+</body>
+</html>

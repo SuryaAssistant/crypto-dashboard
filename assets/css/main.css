@@ -1,0 +1,32 @@
+body{
+    background-color: #010409;
+    font-family: Roboto, Arial, Helvetica;
+}
+
+.btn-custom{
+    font-size: 10px;
+    font-weight: bold;
+    padding: 4px 16px 4px 16px;
+
+}
+
+.card{
+    background-color: #0D1117;
+    border-radius: 20px;
+}
+
+.card-title{
+    color: #FFFFFF;
+    font-weight: 500;
+    line-height: 24px;
+    font-size: 16px;
+}
+
+.card-credit-text{
+    color: #9B9B9B;
+    font-size: 12px;
+    font-weight: 400px;
+    line-height: 16px;
+    padding: 0px;
+    margin: 20px 0px 0px 0px;
+}
