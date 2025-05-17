@@ -3,6 +3,13 @@ body{
     font-family: Roboto, Arial, Helvetica;
 }
 
+section {
+    padding-top:80px;
+    width:100%;
+    background-color: #fff;
+}
+
+
 .btn-custom{
     font-size: 10px;
     font-weight: bold;
