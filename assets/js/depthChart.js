@@ -86,6 +86,10 @@ const chart = new Chart(ctx, {
 
 async function fetchCoinbaseOrderBook(){
     const MAX_LEVELS = 2500;
+    if (window.innerWidth < 992) { // Large screen and up
+        return;
+    }
+
 
     try {
         const res = await fetch('https://api.exchange.coinbase.com/products/BTC-USD/book?level=2');
