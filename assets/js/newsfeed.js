@@ -31,9 +31,11 @@ function getSourceFromLink(link) {
 }
 
 async function fetchFeed(url) {
-    const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}`);
+    const noCacheUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}&t=${Date.now()}`;
+    const res = await fetch(noCacheUrl, {
+        cache: 'no-store' // explicitly tells browser not to cache
+    });
     const data = await res.json();
-    console.log(data)
     return data.items.map(item => {
         let timeStr = item.pubDate;
         if (!timeStr.endsWith("Z")) timeStr += "Z";

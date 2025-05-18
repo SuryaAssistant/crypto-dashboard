@@ -120,25 +120,16 @@ document.querySelectorAll('#news-content a').forEach(link => {
         </div>
 
         <!-- Fear and Greed -->
-        <div class="row">
-            <div class="col-lg-4" style="margin-bottom: 20px;">
-                <div class="card" style="height: 350px;">
+        <div class="row row-cols-1 row-cols-lg-2 g-4" style="margin-bottom: 20px;">
+            <div class="col-lg-4">
+                <div class="card h-100">
                     <div class="card-body" style="padding: 0px;">
                         <div id="fng-widget-container"></div>
                     </div>
                 </div>
             </div>
-            <!--
-            <div class="col-lg-4" style="margin-bottom: 20px;">
-                <div class="card" style="height: 350px;">
-                    <div class="card-body">
-                        <img src="https://alternative.me/crypto/fear-and-greed-index.png" style="object-fit: contain; height:100%; width: 100%; max-height: 300px;" />
-                    </div>
-                </div>
-            </div>
-            -->
-            <div class="col-lg-8" style="margin-bottom: 20px;">
-                <div class="card" style="height: 350px;">
+            <div class="col-lg-8">
+                <div class="card h-100" style="height: 350px;">
                     <div class="card-body">
                         <div class="card-title">Bitcoin Fear & Greed</div>
                         <div class="row" style="margin-bottom:20px">
@@ -146,8 +137,8 @@ document.querySelectorAll('#news-content a').forEach(link => {
                                 <button type="button" class="btn btn-secondary btn-custom" onclick="fetchAndPlotFNG(7)">7D</button>
                                 <button type="button" class="btn btn-secondary btn-custom" onclick="fetchAndPlotFNG(30)">1M</button>
                                 <button type="button" class="btn btn-secondary btn-custom" onclick="fetchAndPlotFNG(90)">3M</button>
-                                <button type="button" class="btn btn-secondary btn-custom" onclick="fetchAndPlotFNG(180)">6M</button>
                                 <button type="button" class="btn btn-secondary btn-custom" onclick="fetchAndPlotFNG(365)">1Y</button>
+                                <button type="button" class="btn btn-secondary btn-custom" onclick="fetchAndPlotFNG(1460)">4Y</button>
                             </div>
                         </div>
                         <div class="row">
@@ -187,6 +178,15 @@ document.querySelectorAll('#news-content a').forEach(link => {
                                 "symbols": [
                                     [
                                     "BITSTAMP:BTCUSD|1M"
+                                    ],
+                                    [
+                                    "CRYPTOCAP:BTC.D|1M"
+                                    ],
+                                    [
+                                    "BITSTAMP:ETHUSD|1M"
+                                    ],
+                                    [
+                                    "CRYPTOCAP:TOTAL3|1M"
                                     ]
                                 ],
                                 "chartOnly": false,
@@ -267,7 +267,7 @@ document.querySelectorAll('#news-content a').forEach(link => {
             <div class="col-lg-4">
                 <div class= "card">
                     <div class="card-body" style="max-height: 1000px; overflow: scroll;">
-                        <div class="card-title" style="text-align: left; margin-bottom:20px">Bitcoin News</div>
+                        <div class="card-title" style="text-align: left; margin-bottom:20px">Crypto News</div>
                         <div class="row" id="news-spinner" style="display: block;">
                             <div class="col">
                                 <div class="spinner-border text-warning" role="status">
@@ -388,18 +388,25 @@ document.querySelectorAll('#news-content a').forEach(link => {
                                 display: false,
                                 text: 'Date',
                                 color: '#fff'
+                            },
+                            grid: {
+                                display: false,
                             }
                         },
                         y: {
                             beginAtZero: true,
                             max: 100,
                             title: {
-                                display: true,
+                                display: false,
                                 text: 'Fear & Greed Index',
                                 color: '#fff'
                             },
                             ticks: {
                                 color: '#fff'
+                            },
+                            position : 'right',
+                            grid: {
+                                display: false,
                             }
                         },
                     },
@@ -421,8 +428,8 @@ document.querySelectorAll('#news-content a').forEach(link => {
                                 enabled: true,
                                 position: 'start',
                                 yAdjust: -10,
-                                backgroundColor: 'rgba(0,0,0,0.5)',
-                                color: 'rgba(255,255,255,0.7)'
+                                backgroundColor: 'rgba(0,0,0,0.7)',
+                                color: 'rgba(255,255,255,0.8)'
                                 }
                             },
                             line20: {
@@ -436,8 +443,8 @@ document.querySelectorAll('#news-content a').forEach(link => {
                                 enabled: true,
                                 position: 'start',
                                 yAdjust: -10,
-                                backgroundColor: 'rgba(0,0,0,0.5)',
-                                color: 'rgba(255,255,255,0.7)'
+                                backgroundColor: 'rgba(0,0,0,0.7)',
+                                color: 'rgba(255,255,255,0.8)'
                                 }
                             }
                             }
