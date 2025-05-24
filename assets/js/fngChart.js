@@ -80,10 +80,10 @@ function plotChart(labels, values) {
                 },
                 annotation: {
                     annotations: {
-                    line80: {
+                    lineExtremeGreed: {
                         type: 'line',
-                        yMin: 80,
-                        yMax: 80,
+                        yMin: 75,
+                        yMax: 75,
                         borderColor: 'rgba(255,255,255,0.5)',
                         borderWidth: 1,
                         label: {
@@ -95,10 +95,10 @@ function plotChart(labels, values) {
                         color: 'rgba(255,255,255,0.8)'
                         }
                     },
-                    line20: {
+                    lineExtremeFear: {
                         type: 'line',
-                        yMin: 20,
-                        yMax: 20,
+                        yMin: 25,
+                        yMax: 25,
                         borderColor: 'rgba(255,255,255,0.5)',
                         borderWidth: 1,
                         label: {
